@@ -16,7 +16,9 @@ import CustomAppBar from "../helpers/AppBar";
 import SenderMessage from "../helpers/SenderMessage";
 import AIMessage from "../helpers/AIMessage";
 
-const Chatbot = ({ navigation }) => {
+const Chatbot = ({ navigation , route }) => {
+  const { user_id } = route.params;
+  console.log("Chatbot User Id: ", user_id);
   const [messages, setMessages] = useState([]);
   const [newsQuery, setNewsQuery] = useState("");
 
@@ -69,7 +71,7 @@ const Chatbot = ({ navigation }) => {
 
   return (
     <SafeAreaView style={tw`flex-1`}>
-      <CustomAppBar navigation={navigation} heading={"NewsMaven"} />
+      <CustomAppBar navigation={navigation} heading={"NewsMaven"} user_id={user_id} />
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={tw`flex-1`}

@@ -6,7 +6,8 @@ import CustomModal from "./Modal";
 import { Platform } from "react-native";
 import tw from "twrnc";
 
-const CustomAppBar = ({ navigation, heading }) => {
+const CustomAppBar = ({ navigation, heading, user_id }) => {
+  console.log("Appbar User Id: ", user_id);
   const [modalVisible, setModalVisible] = React.useState(false);
 
   const openModal = () => setModalVisible(true);
@@ -14,7 +15,7 @@ const CustomAppBar = ({ navigation, heading }) => {
 
   const navigateToHome = () => {
     closeModal();
-    navigation.navigate("Home");
+    navigation.navigate("Home", { user_id });
   };
 
   return (
@@ -60,6 +61,7 @@ const CustomAppBar = ({ navigation, heading }) => {
         visible={modalVisible}
         onClose={closeModal}
         navigation={navigation}
+        user_id ={user_id}
       />
     </View>
   );

@@ -18,9 +18,45 @@ function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    console.log("Email:", email);
-    console.log("Password:", password);
+  const handleLogin =  async () => {
+    // console.log("Email:", email);
+    // console.log("Password:", password);
+    if (!email.trim() || !password) {
+      Alert.alert("Error", "Email and password are required.");
+      return;
+    }
+
+    try {
+      // Make the API call
+      const response = await fetch("http://10.7.16.78:8000/api/login/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email.trim(),
+          password: password,
+        }),
+      });
+
+      // Parse the response as JSON
+      const data = await response.json();
+
+      if (response.ok) {
+        // Successful login
+        const user_id = data.user.id;
+        // console.log(data);
+        console.log(user_id);
+        alert("Login successful!");
+        navigation.navigate("Home", { user_id }); // Navigate to the home screen
+      } else {
+        // Handle server-side errors
+        alert("Login Failed", data.message || "Invalid credentials.");
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+      alert("Error", "Unable to reach the server. Please try again later.");
+    } 
   };
 
   return (

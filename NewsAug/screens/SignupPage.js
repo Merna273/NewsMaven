@@ -21,16 +21,49 @@ function Signup({ navigation }) {
   const [name, setName] = useState("");
   // const [country, setCountry] = useState("");
 
-  const handleSignup = () => {
+  const handleSignup = async () => {
+    if (!email || !password || !name || !confirmPassword) {
+      alert("All fields are required!");
+      return;
+    }
+  
     if (!isPasswordMatch) {
       alert("Passwords do not match!");
       return;
     }
-
-    console.log("Email:", email);
-    console.log("Password:", password);
-    // Continue with signup process (e.g., API call)
+  
+    try {
+      // Make the API call
+      const response = await fetch("http://10.7.16.78:8000/api/signup/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email.trim(),
+          password: password,
+          user_name: name.trim(),
+        }),
+      });
+  
+      // Parse the response as JSON
+      const data = await response.json();
+  
+      if (response.ok) {
+        // Handle successful signup
+        const user_id = data.user.id;
+        alert("Signup successful!");
+        navigation.navigate("Home", { user_id }); // Navigate to the login screen
+      } else {
+        // Handle server errors
+        alert(data.message || "Signup failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+      alert("Unable to reach the server. Please try again later.");
+    }
   };
+  
 
   const handleConfirmPasswordChange = (text) => {
     setConfirmPassword(text);

@@ -14,7 +14,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Modal from "react-native-modal";
 import tw from "twrnc";
 
-const CustomModal = ({ visible, onClose, navigation }) => {
+const CustomModal = ({ visible, onClose, navigation, user_id}) => {
+  console.log("Modal User Id: ", user_id);
   // WILL GET THE CATEGORIES FROM THE DATABASE
   // const categories = [
   //   { name: "General", icon: "earth" },
@@ -36,17 +37,17 @@ const CustomModal = ({ visible, onClose, navigation }) => {
   };
   const navigateToSettings = () => {
     CloseModal();
-    navigation.navigate("Settings");
+    navigation.navigate("Settings", { user_id });
   };
 
   const navigateToHistory = () => {
     CloseModal();
-    navigation.navigate("History");
+    navigation.navigate("History", { user_id });
   };
 
   const navigateToChatbot = () => {
     CloseModal();
-    navigation.navigate("Chatbot");
+    navigation.navigate("Chatbot", { user_id });
   };
 
   const setModalVisible = (value) => {

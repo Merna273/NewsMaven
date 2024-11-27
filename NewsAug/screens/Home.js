@@ -6,10 +6,13 @@ import { Button } from "react-native-paper";
 import { TouchableOpacity } from "react-native";
 import tw from "twrnc";
 
-const Home = ({ navigation }) => {
+const Home = ({ navigation, route }) => {
+  const { user_id } = route.params; // Retrieve chat_id from navigation params
+  console.log("Home User Id: ", user_id);
+  // console.log(userId)
   return (
     <SafeAreaView style={tw`flex-1`}>
-      <CustomAppBar navigation={navigation} heading={"Home"} />
+      <CustomAppBar navigation={navigation} heading={"Home"} user_id={user_id} />
       <View style={tw`flex-1 justify-around`}>
         <View style={tw`flex-1 justify-center`}>
           <Image
@@ -36,7 +39,11 @@ const Home = ({ navigation }) => {
           </Text>
           <View style={tw`flex items-center justify-center `}>
             <TouchableOpacity
-              onPress={() => navigation.navigate("Chatbot")}
+              onPress={() =>
+                navigation.navigate("Chatbot", {
+                  user_id: user_id,
+                })
+              }
               style={[
                 tw`m-2 rounded-full py-3 px-5`,
                 { backgroundColor: "#1F1F7B" },
