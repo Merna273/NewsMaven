@@ -22,13 +22,13 @@ function Login({ navigation }) {
     // console.log("Email:", email);
     // console.log("Password:", password);
     if (!email.trim() || !password) {
-      Alert.alert("Error", "Email and password are required.");
+      alert("Error", "Email and password are required.");
       return;
     }
 
     try {
       // Make the API call
-      const response = await fetch("http://10.7.16.78:8000/api/login/", {
+      const response = await fetch("http://172.24.0.1:8081/api/login/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +47,7 @@ function Login({ navigation }) {
         const user_id = data.user.id;
         // console.log(data);
         console.log(user_id);
-        alert("Login successful!");
+        // alert("Login successful!");
         navigation.navigate("Home", { user_id }); // Navigate to the home screen
       } else {
         // Handle server-side errors
@@ -85,10 +85,10 @@ function Login({ navigation }) {
               Login to NewsMaven
             </Text>
             <Text style={tw`text-gray-500 text-center mt-5 mx-10`}>
-              Welcome back! Sign in using your social account or email to
+              Welcome back! Sign in using email to
               continue using NewsMaven
             </Text>
-            <View style={tw`flex-row justify-around mx-15 mt-10`}>
+            {/* <View style={tw`flex-row justify-around mx-15 mt-10`}>
               <TouchableOpacity
                 style={tw`items-center border border-gray-400 rounded-full p-1`}
               >
@@ -121,8 +121,8 @@ function Login({ navigation }) {
               <View style={tw`w-1/3 border-b border-gray-300`} />
               <Text style={tw`text-gray-400 text-lg`}>OR</Text>
               <View style={tw`w-1/3 border-b border-gray-300`} />
-            </View>
-            <View style={tw`flex items-center justify-center mt-10`}>
+            </View> */}
+            <View style={tw`flex items-center justify-center mt-25`}>
               <View style={tw`mt-5 w-80`}>
                 <TextInput
                   mode="outlined"

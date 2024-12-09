@@ -16,10 +16,33 @@ import tw from "twrnc";
 function PasswordForgot({ navigation }) {
   const [email, setEmail] = useState("");
 
-  const handlePassForgot = () => {
-    //navigate to the passcode verify page
+  const handlePassForgot = async () => {
+    // setLoading(true); // Start loading
     console.log("Email:", email);
-    navigation.navigate("PassCodeVerify");
+    try {
+      // Replace with your API endpoint
+      const response = await fetch("http://172.24.0.1:8081/api/request-password-reset/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        // Navigate to the PassCodeVerify screen if API call is successful
+        // alert(data.message || "Password reset email sent successfully.");   
+        navigation.navigate("PassCodeVerify",{
+          user_email: email,
+        })
+      } else {
+        // Display error message from the API response
+        alert(data.message || "Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      alert("Unable to connect to the server. Please try again later.");
+    } 
   };
 
   return (

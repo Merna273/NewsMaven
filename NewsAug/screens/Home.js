@@ -5,11 +5,36 @@ import { Text } from "react-native";
 import { Button } from "react-native-paper";
 import { TouchableOpacity } from "react-native";
 import tw from "twrnc";
+import React, { useEffect } from "react";
 
 const Home = ({ navigation, route }) => {
-  const { user_id } = route.params; // Retrieve chat_id from navigation params
+  const { user_id} = route.params; // Retrieve chat_id from navigation params
   console.log("Home User Id: ", user_id);
   // console.log(userId)
+  // const [name, setName] = React.useState("");
+  // useEffect(() => {
+  //   const fetchUserDetails = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         `http://172.24.0.1:8081/api/user/details/${user_id}`
+  //       );
+  //       const data = await response.json();
+
+  //       if (response.ok) {
+  //         setName(data.user_name);
+  //         // setEmail(data.email);
+  //       } else {
+  //         alert("Failed to fetch user details.");
+  //       }
+  //     } catch (error) {
+  //       console.error("Fetch error:", error);
+  //       alert("Unable to fetch user details. Please try again later.");
+  //     }
+  //   };
+
+  //   fetchUserDetails();
+  // }, [user_id]);
+
   return (
     <SafeAreaView style={tw`flex-1`}>
       <CustomAppBar navigation={navigation} heading={"Home"} user_id={user_id} />
@@ -27,7 +52,7 @@ const Home = ({ navigation, route }) => {
           ]}
         >
           <Text style={[tw`text-gray-400 text-3xl mb-5`, { color: "#1F1F7B" }]}>
-            Hi John Doe,
+            Hello 👋!
           </Text>
           <Text
             style={[

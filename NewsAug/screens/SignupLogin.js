@@ -11,7 +11,7 @@ function SignupLogin({ navigation }) {
           source={require("../assets/logoT.png")}
           style={tw`w-70 h-70 items-center mx-auto`}
         />
-        <View style={tw`flex-row justify-around mx-15 mt-10`}>
+        {/* <View style={tw`flex-row justify-around mx-15 mt-10`}>
           <TouchableOpacity
             style={tw`items-center border border-gray-400 rounded-100 p-1`}
           >
@@ -31,13 +31,13 @@ function SignupLogin({ navigation }) {
           >
             <MaterialCommunityIcons name="apple" size={40} color={"black"} />
           </TouchableOpacity>
-        </View>
-        <View style={tw`flex-row mt-10 items-center justify-around`}>
+        </View> */}
+        {/* <View style={tw`flex-row mt-10 items-center justify-around`}>
           <View style={tw`w-1/3 border-b border-gray-300`} />
           <Text style={tw`text-gray-400 text-lg`}>OR</Text>
           <View style={tw`w-1/3 border-b border-gray-300`} />
-        </View>
-        <View style={tw`flex items-center justify-center mt-10`}>
+        </View> */}
+        <View style={tw`flex items-center justify-center mt-15`}>
           <TouchableOpacity
             onPress={() => navigation.navigate("Signup")}
             style={[
@@ -45,7 +45,7 @@ function SignupLogin({ navigation }) {
               { backgroundColor: "#1F1F7B" },
             ]}
           >
-            <Text style={tw`text-white text-2xl `}>Signup with Email</Text>
+            <Text style={tw`text-white text-2xl `}>Signup</Text>
           </TouchableOpacity>
           <View style={tw`flex-row mt-10`}>
             <Text style={tw`text-gray-500 text-lg`}>

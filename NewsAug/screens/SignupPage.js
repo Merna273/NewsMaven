@@ -34,7 +34,7 @@ function Signup({ navigation }) {
   
     try {
       // Make the API call
-      const response = await fetch("http://10.7.16.78:8000/api/signup/", {
+      const response = await fetch("http://172.24.0.1:8081/api/signup/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -48,12 +48,14 @@ function Signup({ navigation }) {
   
       // Parse the response as JSON
       const data = await response.json();
+      // console.log("Yalahwyyyyyyyyy",data);
   
-      if (response.ok) {
+      if (data.message == "User created successfully") {
         // Handle successful signup
-        const user_id = data.user.id;
-        alert("Signup successful!");
-        navigation.navigate("Home", { user_id }); // Navigate to the login screen
+        const user_id = data.user_id;
+        // const name = data.user_name;
+        // alert("Signup successful!");
+        navigation.navigate("Home", { user_id}); // Navigate to the login screen
       } else {
         // Handle server errors
         alert(data.message || "Signup failed. Please try again.");

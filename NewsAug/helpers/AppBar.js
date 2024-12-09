@@ -6,8 +6,8 @@ import CustomModal from "./Modal";
 import { Platform } from "react-native";
 import tw from "twrnc";
 
-const CustomAppBar = ({ navigation, heading, user_id }) => {
-  console.log("Appbar User Id: ", user_id);
+const CustomAppBar = ({ navigation, heading, user_id, clearChat }) => {
+  // console.log("Appbar User Id: ", user_id);
   const [modalVisible, setModalVisible] = React.useState(false);
 
   const openModal = () => setModalVisible(true);
@@ -15,6 +15,7 @@ const CustomAppBar = ({ navigation, heading, user_id }) => {
 
   const navigateToHome = () => {
     closeModal();
+  
     navigation.navigate("Home", { user_id });
   };
 
@@ -36,7 +37,7 @@ const CustomAppBar = ({ navigation, heading, user_id }) => {
           }}
           onPress={() => {
             openModal();
-            console.log("Hello World");
+            // console.log("Hello World");
           }}
         >
           <MaterialCommunityIcons name="menu" size={24} color="#1F1F7B" />
@@ -62,6 +63,7 @@ const CustomAppBar = ({ navigation, heading, user_id }) => {
         onClose={closeModal}
         navigation={navigation}
         user_id ={user_id}
+        clearChat={clearChat}
       />
     </View>
   );
